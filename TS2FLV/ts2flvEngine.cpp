@@ -146,9 +146,8 @@ static void setup_array(uint8_t* out[32], AVFrame* in_frame, int format, int sam
 		int i;
 		int plane_size = av_get_bytes_per_sample((AVSampleFormat)(format & 0xFF)) * samples;
 		format &= 0xFF;
-		in_frame->data[0] + i*plane_size;
 		for (i = 0; i < in_frame->channels; i++) {
-			out[i] = in_frame->data[i];
+			out[i] = in_frame->data[0] + i*plane_size;
 		}
 	}
 	else {
